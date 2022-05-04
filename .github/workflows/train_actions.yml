@@ -45,7 +45,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: raphaelrt/hetic-deploiement_train:${{ steps.vars.outputs.sha_short }}
+          tags: |
+            latest
+            raphaelrt/hetic-deploiement_train:${{ steps.vars.outputs.sha_short }}
       
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest}}
