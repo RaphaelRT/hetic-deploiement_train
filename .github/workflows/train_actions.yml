@@ -46,6 +46,17 @@ jobs:
           context: .
           push: true
           tags: raphaelrt/hetic-deploiement_train:${{ steps.vars.outputs.sha_short }}
+      
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest}}
+      
+      - name: Create volume
+        run: docker volume create data
 
+      - name: RUN dataset
+        run: docker run hetic-deploiement_data -v data:/data
+
+      - name: RUN train
+        run: docker run hetic-deploiement_train -v data:/data
+
+      
