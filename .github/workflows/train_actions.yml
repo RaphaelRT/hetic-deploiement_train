@@ -51,16 +51,16 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest}}
 
       - name: Run the build process data with Docker
-            uses: addnab/docker-run-action@v3
-            with:
-                image: raphaelrt/hetic-deploiement_data
-                options: -v data:/data
+        uses: addnab/docker-run-action@v3
+        with:
+          image: raphaelrt/hetic-deploiement_data
+          options: -v data:/data
 
       - name: Run the build process with Docker
-            uses: addnab/docker-run-action@v3
-            with:
-                image: raphaelrt/hetic-deploiement_train
-                options: -v data:/data
+          uses: addnab/docker-run-action@v3
+          with:
+              image: raphaelrt/hetic-deploiement_train
+              options: -v data:/data
     
 
       
