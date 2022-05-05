@@ -52,19 +52,15 @@ jobs:
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest}}
 
-      - name: Run the build process data with Docker
-        uses: addnab/docker-run-action@v3
-        with:
-          image: raphaelrt/hetic-deploiement_data
-          options: -v data:/data
+      - name: Run data
+        run: docker run raphaelrt/hetic-deploiement_data -v data:/data
+      
+      - name: Run train
+        run: docker run raphaelrt/hetic-deploiement_train -v data:/data
 
-      - name: Run the build process with Docker
-        uses: addnab/docker-run-action@v3
-        with:
-          image: raphaelrt/hetic-deploiement_train
-          options: -v data:/data
       - name: Docker ls
         run: docker container ls
+
       - name: Docker cp
         run: docker cp raphaelrt/hetic-deploiement_train:data/model.json ./
     
