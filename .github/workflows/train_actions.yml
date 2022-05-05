@@ -63,7 +63,8 @@ jobs:
         with:
           image: raphaelrt/hetic-deploiement_train
           options: -v data:/data
-
+      - name: Docker ls
+        run: docker container ls
       - name: Docker cp
         run: docker cp raphaelrt/hetic-deploiement_train:data/model.json ./
     
