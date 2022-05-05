@@ -9,6 +9,11 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_call:
+    inputs:
+      sha:
+        required: true
+        type: string
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -61,9 +66,6 @@ jobs:
       - name: Run train
         run: docker run --name hetic-deploiement_train -v data:/data raphaelrt/hetic-deploiement_train
 
-      - name: Docker ls
-        run: docker container ls
-
       - name: Docker cp
         run: docker cp hetic-deploiement_train:data/model.json ./model
       
@@ -75,7 +77,9 @@ jobs:
           tags: |
             raphaelrt/hetic-deploiement_model:latest
             raphaelrt/hetic-deploiement_model:${{ steps.vars.outputs.sha_short }}
-            
+      - name: ECHO
+        run: echo ${{ inputs.sha }}
+
     
 
       
