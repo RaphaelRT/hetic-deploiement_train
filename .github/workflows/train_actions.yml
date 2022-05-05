@@ -42,6 +42,19 @@ jobs:
         id: vars
         run: echo ::set-output name=sha_short::$(git rev-parse --short HEAD)
 
+      - name: get sha
+        id: vars
+        run: |
+          if [${{ github.event.client_payload.sha }}[0] != null]
+          then
+              echo ${{ github.event.client_payload.sha }}
+          else
+              echo ::set-output name=sha_short::$(git rev-parse --short HEAD)
+          fi
+          
+       - name: ECHO
+          run: echo "data sha ${{ github.event.client_payload.sha }}" && echo "local sha ${{ steps.vars.outputs.sha_short }}
+
       - name: Build train image and push to Docker Hub
         uses: docker/build-push-action@v2
         with:
@@ -74,8 +87,7 @@ jobs:
           tags: |
             raphaelrt/hetic-deploiement_model:latest
             raphaelrt/hetic-deploiement_model:${{ steps.vars.outputs.sha_short }}
-      - name: ECHO
-        run: echo "sha ${{ github.event.client_payload.sha }}"
+     
 
     
 
