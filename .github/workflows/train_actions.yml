@@ -51,9 +51,9 @@ jobs:
           else
               echo ::set-output name=sha_short::$(git rev-parse --short HEAD)
           fi
-          
-       - name: ECHO
-          run: echo "data sha ${{ github.event.client_payload.sha }}" && echo "local sha ${{ steps.vars.outputs.sha_short }}
+
+      - name: ECHO
+        run: echo "data sha ${{ github.event.client_payload.sha }}" && echo "local sha ${{ steps.vars.outputs.sha_short }}
 
       - name: Build train image and push to Docker Hub
         uses: docker/build-push-action@v2
