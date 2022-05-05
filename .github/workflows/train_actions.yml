@@ -59,10 +59,10 @@ jobs:
         run: docker pull raphaelrt/hetic-deploiement_data
       
       - name: Run data
-        run: docker run raphaelrt/hetic-deploiement_data -v data:/data
+        run: docker run --name raphaelrt/hetic-deploiement_data -v data:/data raphaelrt/hetic-deploiement_data
       
       - name: Run train
-        run: docker run raphaelrt/hetic-deploiement_train -v data:/data
+        run: docker run --name raphaelrt/hetic-deploiement_train -v data:/data raphaelrt/hetic-deploiement_train
 
       - name: Docker ls
         run: docker container ls
