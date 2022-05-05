@@ -54,9 +54,6 @@ jobs:
       
       - name: Volume create
         run: docker volume create data
-
-      - name: Pull data
-        run: docker pull raphaelrt/hetic-deploiement_data
       
       - name: Run data
         run: docker run --name hetic-deploiement_data -v data:/data raphaelrt/hetic-deploiement_data
