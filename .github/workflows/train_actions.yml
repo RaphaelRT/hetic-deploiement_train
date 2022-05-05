@@ -38,9 +38,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Get sha short
-        id: vars
-        run: echo ::set-output name=sha_short::$(git rev-parse --short HEAD)
+      #- name: Get sha short
+      #  id: vars
+      #  run: echo ::set-output name=sha_short::$(git rev-parse --short HEAD)
 
       - name: get sha
         id: vars
