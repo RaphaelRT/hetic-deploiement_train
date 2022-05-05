@@ -75,7 +75,7 @@ jobs:
             raphaelrt/hetic-deploiement_model:latest
             raphaelrt/hetic-deploiement_model:${{ steps.vars.outputs.sha_short }}
       - name: ECHO
-        run: echo "sha ${{ github.event.client_payload.sha_short }}"
+        run: echo "sha ${{ github.event.client_payload.sha }}"
 
     
 
