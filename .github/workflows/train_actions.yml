@@ -59,16 +59,16 @@ jobs:
         run: docker pull raphaelrt/hetic-deploiement_data
       
       - name: Run data
-        run: docker run --name raphaelrt/hetic-deploiement_data -v data:/data raphaelrt/hetic-deploiement_data
+        run: docker run --name hetic-deploiement_data -v data:/data raphaelrt/hetic-deploiement_data
       
       - name: Run train
-        run: docker run --name raphaelrt/hetic-deploiement_train -v data:/data raphaelrt/hetic-deploiement_train
+        run: docker run --name hetic-deploiement_train -v data:/data raphaelrt/hetic-deploiement_train
 
       - name: Docker ls
         run: docker container ls
 
       - name: Docker cp
-        run: docker cp raphaelrt/hetic-deploiement_train:data/model.json ./
+        run: docker cp hetic-deploiement_train:data/model.json ./
     
 
       
