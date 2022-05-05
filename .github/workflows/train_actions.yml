@@ -46,7 +46,7 @@ jobs:
           context: .
           push: true
           tags: |
-            latest
+            raphaelrt/hetic-deploiement_train:latest
             raphaelrt/hetic-deploiement_train:${{ steps.vars.outputs.sha_short }}
       
       - name: Image digest
