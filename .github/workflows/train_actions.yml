@@ -51,6 +51,7 @@ jobs:
           else
               echo ::set-output name=sha_short::$(git rev-parse --short HEAD)
           fi
+        
 
       - name: ECHO
         run: echo "data sha ${{ github.event.client_payload.sha }}" && echo "local sha ${{ steps.vars.outputs.sha_short }}"
@@ -71,7 +72,7 @@ jobs:
         run: docker volume create data
       
       - name: Run data
-        run: docker run --name hetic-deploiement_data -v data:/data raphaelrt/hetic-deploiement_data
+        run: docker run --name hetic-deploiement_data -v data:/data raphaelrt/hetic-deploiement_data:${{ github.event.client_payload.sha }} || docker run --name hetic-deploiement_data -v data:/data raphaelrt/hetic-deploiement_data:latest
       
       - name: Run train
         run: docker run --name hetic-deploiement_train -v data:/data raphaelrt/hetic-deploiement_train
