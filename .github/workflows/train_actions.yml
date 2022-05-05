@@ -65,7 +65,7 @@ jobs:
           options: -v data:/data
 
       - name: Docker cp
-        run: docker cp hetic-deploiement_train:data/model.json ./
+        run: docker cp raphaelrt/hetic-deploiement_train:data/model.json ./
     
 
       
