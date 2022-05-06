@@ -52,7 +52,7 @@ jobs:
           then
               echo ::set-output name=tag::${{ github.event.client_payload.sha }}
           else
-              echo "Latest"
+              echo ::set-output name=tag::"latest"
           fi
         
       - name: ECHO
@@ -90,6 +90,9 @@ jobs:
           tags: |
             raphaelrt/hetic-deploiement_model:latest
             raphaelrt/hetic-deploiement_model:${{ steps.vars.outputs.sha_short }}
+      - name: curl
+        run: |
+          curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" --request POST --data '{"event_type": "api_trigger", "client_payload": { "sha": "${{ steps.vars.outputs.sha_short }}"}}' https://api.github.com/repos/RaphaelRT/hetic-deploiement_api/dispatches
      
 
     
